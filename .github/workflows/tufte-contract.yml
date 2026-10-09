@@ -1,0 +1,16 @@
+name: TUFTE renderer contract
+on:
+  push:
+    branches: ["tufte-deterministic-contract"]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check src/index.mjs
+      - run: node --check src/tufte.mjs
+      - run: npm test
